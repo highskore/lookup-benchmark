@@ -6,3 +6,6 @@
   branch = "release-v0"
   path = "lib/prb-test"
   url = "https://github.com/PaulRBerg/prb-test"
+[submodule "lib/foundry-huff"]
+	path = lib/foundry-huff
+	url = https://github.com/huff-language/foundry-huff
