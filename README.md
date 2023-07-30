@@ -4,7 +4,7 @@ This repository contains a smart contract Benchmark written in Solidity that is 
 
 ## Gas Snapshot
 
-![Alt text](image-1.png)
+![Alt text](snapshot.png)
 
 | src/If.sol:If contract |                 |      |        |      |         |
 |------------------------|-----------------|------|--------|------|---------|
