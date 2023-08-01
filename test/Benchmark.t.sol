@@ -13,6 +13,9 @@ import { HuffDeployer } from "foundry-huff/HuffDeployer.sol";
 import { Map } from "../src/Map.sol";
 import { Lookup } from "../src/Lookup.sol";
 import { Lookup2 } from "../src/Lookup2.sol";
+import { Lookup3 } from "../src/Lookup3.sol";
+import { Lookup4 } from "../src/Lookup4.sol";
+import { Lookup5 } from "../src/Lookup5.sol";
 import { If } from "../src/If.sol";
 import { YulSwitch } from "../src/YulSwitch.sol";
 import { HuffWrapper } from "../src/HuffWrapper.sol";
@@ -22,6 +25,9 @@ contract BenchmarkTest is PRBTest, StdCheats {
     Map internal map;
     Lookup internal lookup;
     Lookup2 internal lookup2;
+    Lookup3 internal lookup3;
+    Lookup4 internal lookup4;
+    Lookup5 internal lookup5;
     If internal if_;
     YulSwitch internal yulSwitch;
     HuffLib internal huffLib;
@@ -31,6 +37,9 @@ contract BenchmarkTest is PRBTest, StdCheats {
         map = new Map();
         lookup = new Lookup();
         lookup2 = new Lookup2();
+        lookup3 = new Lookup3();
+        lookup4 = new Lookup4();
+        lookup5 = new Lookup5();
         if_ = new If();
         yulSwitch = new YulSwitch();
         huffPure = Huff(HuffDeployer.config().deploy("JumpTable_Pure"));
@@ -148,6 +157,51 @@ contract BenchmarkTest is PRBTest, StdCheats {
 
     function test_Lookup2_Max() public {
         uint256 value = lookup2.getLookup2(type(uint8).max);
+        assertEq(value, uint256(0xffffffffffffffffff));
+    }
+
+    function testFuzz_Lookup3(uint8 index) public {
+        uint256 value = lookup3.getLookup3(index);
+        assertEq(value, uint256(0xffffffffffffffffff));
+    }
+
+    function test_Lookup3_Min() public {
+        uint256 value = lookup3.getLookup3(type(uint8).min);
+        assertEq(value, uint256(0xffffffffffffffffff));
+    }
+
+    function test_Lookup3_Max() public {
+        uint256 value = lookup3.getLookup3(type(uint8).max);
+        assertEq(value, uint256(0xffffffffffffffffff));
+    }
+
+    function testFuzz_Lookup4(uint8 index) public {
+        uint256 value = lookup4.getLookup4(index);
+        assertEq(value, uint256(0xffffffffffffffffff));
+    }
+
+    function test_Lookup4_Min() public {
+        uint256 value = lookup4.getLookup4(type(uint8).min);
+        assertEq(value, uint256(0xffffffffffffffffff));
+    }
+
+    function test_Lookup4_Max() public {
+        uint256 value = lookup4.getLookup4(type(uint8).max);
+        assertEq(value, uint256(0xffffffffffffffffff));
+    }
+
+    function testFuzz_Lookup5(uint8 index) public {
+        uint256 value = lookup5.getLookup5(index);
+        assertEq(value, uint256(0xffffffffffffffffff));
+    }
+
+    function test_Lookup5_Min() public {
+        uint256 value = lookup5.getLookup5(type(uint8).min);
+        assertEq(value, uint256(0xffffffffffffffffff));
+    }
+
+    function test_Lookup5_Max() public {
+        uint256 value = lookup5.getLookup5(type(uint8).max);
         assertEq(value, uint256(0xffffffffffffffffff));
     }
 

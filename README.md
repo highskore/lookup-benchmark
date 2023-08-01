@@ -33,7 +33,9 @@ A solidity if statement with 255 branches.
 | Function Name          | min             | avg  | median | max  | # calls |
 | getIf                  | 288             | 4190 | 6130   | 6153 | 3       |
 
-### Lookup
+### Lookup (1,2,3,4)
+
+#### Lookup1
 
 Concatenating 9 different lookup constants at [index] into a single return value
 
@@ -44,7 +46,7 @@ Concatenating 9 different lookup constants at [index] into a single return value
 | Function Name                  | min             | avg  | median | max  | # calls |
 | getLookup                      | 1896            | 1896 | 1896   | 1896 | 3       |
 
-### Lookup2
+#### Lookup2
 
 A method of looking up a single large constant value and from indexes [index, index+8] and then concatenating the result into a single return value
 
@@ -56,6 +58,39 @@ A method of looking up a single large constant value and from indexes [index, in
 | Function Name                    | min             | avg  | median | max  | # calls |
 | getLookup2                       | 6723            | 6723 | 6723   | 6723 | 3       |
 
+
+#### Lookup3
+
+Concatenating 18 different lookup constants at [index] into a single return value
+
+| src/Lookup3.sol:Lookup3 contract |                 |      |        |      |         |
+|----------------------------------|-----------------|------|--------|------|---------|
+| Deployment Cost                  | Deployment Size |      |        |      |         |
+| 389222                           | 1973            |      |        |      |         |
+| Function Name                    | min             | avg  | median | max  | # calls |
+| getLookup3                       | 1724            | 1753 | 1724   | 1812 | 3       |
+
+#### Lookup4
+
+Concatenating 36 different lookup constants at [index] into a single return value
+
+| src/Lookup4.sol:Lookup4 contract |                 |      |        |      |         |
+|----------------------------------|-----------------|------|--------|------|---------|
+| Deployment Cost                  | Deployment Size |      |        |      |         |
+| 440672                           | 2230            |      |        |      |         |
+| Function Name                    | min             | avg  | median | max  | # calls |
+| getLookup4                       | 1675            | 1727 | 1675   | 1831 | 3       |
+
+#### Lookup5
+
+Concatenating 72 different lookup constants at [index] into a single return value
+
+| src/Lookup5.sol:Lookup5 contract |                 |      |        |      |         |
+|----------------------------------|-----------------|------|--------|------|---------|
+| Deployment Cost                  | Deployment Size |      |        |      |         |
+| 547579                           | 2764            |      |        |      |         |
+| Function Name                    | min             | avg  | median | max  | # calls |
+| getLookup5                       | 1603            | 1716 | 1715   | 1831 | 3       |
 
 ### Mapping
 
@@ -81,7 +116,7 @@ A yul switch statement with 255 branches.
 
 ### Huff
 
-Lowest avg gas ez win.
+Pure huff version of the Huffidity Code, a jump table with 255 entries.
 
 ## Credits
 
