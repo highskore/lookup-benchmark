@@ -4,7 +4,7 @@ pragma solidity 0.8.20;
 // solhint-disable
 contract If {
     /// @notice a big constant
-    uint256 public constant BIG = type(uint64).max;
+    uint256 public constant BIG = uint256(0xffffffffffffffffff);
 
     /// @notice Get 8 bytes from const based on index
     function getIf(uint256 index) public pure returns (uint256 out) {

@@ -2,7 +2,7 @@
 
 // Define a jump table
 #define jumptable SWITCH_TABLE {
-    jump_1 jump_2 jump_3 jump_4 jump_5 jump_6 jump_7 jump_8 jump_9 jump_10
+    jump_0 jump_1 jump_2 jump_3 jump_4 jump_5 jump_6 jump_7 jump_8 jump_9 jump_10
     jump_11 jump_12 jump_13 jump_14 jump_15 jump_16 jump_17 jump_18 jump_19 jump_20
     jump_21 jump_22 jump_23 jump_24 jump_25 jump_26 jump_27 jump_28 jump_29 jump_30
     jump_31 jump_32 jump_33 jump_34 jump_35 jump_36 jump_37 jump_38 jump_39 jump_40
@@ -27,799 +27,548 @@
     jump_221 jump_222 jump_223 jump_224 jump_225 jump_226 jump_227 jump_228 jump_229 jump_230
     jump_231 jump_232 jump_233 jump_234 jump_235 jump_236 jump_237 jump_238 jump_239 jump_240
     jump_241 jump_242 jump_243 jump_244 jump_245 jump_246 jump_247 jump_248 jump_249 jump_250
-    jump_251 jump_252 jump_253 jump_254 jump_255 jump_256
+    jump_251 jump_252 jump_253 jump_254 jump_255
 }
 
-// Define a constant
-#define BRUH 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+// A big constant
+#define constant BRUH = 0xffffffffffffffffff
 
-#define macro JUMP_TABLE() {
-    // Codecopy jump table into memory @ 0x00
-    __tablesize(SWITCH_TABLE)   // [table_size]
-    __tablestart(SWITCH_TABLE)  // [table_start, table_size]
-    0x00
-    codecopy
+// Solidity contract size
+#define constant SOL_SIZE = 0x98
 
-    0x04 calldataload           // [input_num]
 
-    // Regular jumptables store the jumpdest PCs as full words,
-    // so we simply multiply the input number by 32 to determine
-    // which label to jump to.
-    0x20 mul                    // [0x20 * input_num]
-    mload                       // [pc]
-    jump                        // []
+#define macro SW_TABLE() = takes (1) returns (1) {
+    // Input Stack              // [jump index, return location]
+    __tablesize(SWITCH_TABLE)   // [table_size, jump index, return location]
+    __tablestart(SWITCH_TABLE)  // [table_start, table_size, jump index, return location]
+    [SOL_SIZE]                  // [SOL_SIZE, table_start, table_size, jump index, return location]
+    add                         // [table_start + SOL_SIZE, table_size, jump index, return location]
+    0x60                        // [0x40, table_start + SOL_SIZE, table_size, jump index, return location]
+    codecopy                    // [jump index, return location]
 
+    0x20 mul                    // [32 * jump index, return location]
+    0x60 add                    // [32 * jump index + 0x40, return location]
+    mload                       // [jump_dest, return location]
+    [SOL_SIZE]                  // [SOL_SIZE, jump_dest, return location]
+    add                         // [SOL_SIZE + jump_dest, return location]
+    jump                        // [return location]
+
+    jump_0:
+        [BRUH] swap1 jump
     jump_1:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_2:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_3:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_4:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_5:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_6:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_7:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_8:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_9:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_10:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_11:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_12:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_13:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_14:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_15:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_16:
-    BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_17:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_18:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_19:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_20:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_21:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_22:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_23:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_24:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_25:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_26:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_27:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_28:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_29:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_30:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_31:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_32:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_33:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_34:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_35:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_36:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_37:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_38:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_39:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_40:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_41:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_42:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_43:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_44:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_45:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_46:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_47:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_48:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_49:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_50:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_51:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_52:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_53:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_54:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_55:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_56:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_57:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_58:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_59:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_60:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_61:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_62:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_63:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_64:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_65:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_66:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_67:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_68:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_69:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_70:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_71:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_72:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_73:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_74:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_75:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_76:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_77:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_78:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_79:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_80:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_81:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_82:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_83:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_84:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_85:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_86:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_87:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_88:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_89:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_90:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_91:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_92:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_93:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_94:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_95:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_96:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_97:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_98:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_99:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_100:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_101:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_102:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_103:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_104:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_105:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_106:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_107:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_108:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_109:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_110:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_111:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_112:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_113:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_114:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_115:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_116:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_117:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_118:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_119:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_120:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_121:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_122:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_123:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_124:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_125:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_126:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_127:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_128:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_129:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_130:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_131:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_132:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_133:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_134:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_135:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_136:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_137:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_138:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_139:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_140:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_141:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_142:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_143:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_144:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_145:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_146:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_147:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_148:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_149:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_150:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_151:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_152:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_153:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_154:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_155:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_156:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_157:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_158:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_159:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_160:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_161:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_162:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_163:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_164:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_165:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_166:
-        BRUH 0x00 mstore
-      0x20 0x00 return
+        [BRUH] swap1 jump
     jump_167:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_168:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_169:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_170:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_171:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_172:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_173:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_174:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_175:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_176:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_177:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_178:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_179:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_180:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_181:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_182:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_183:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_184:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_185:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_186:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_187:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_188:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_189:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_190:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_191:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_192:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_193:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_194:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_195:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_196:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_197:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_198:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_199:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_200:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_201:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_202:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_203:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_204:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_205:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_206:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_207:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_208:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_209:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_210:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_211:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_212:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_213:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_214:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_215:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_216:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_217:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_218:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_219:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_220:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_221:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_222:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_223:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_224:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_225:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_226:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_227:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_228:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_229:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_230:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_231:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_232:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_233:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_234:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_235:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_236:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_237:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_238:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_239:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_240:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_241:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_242:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_243:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_244:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_245:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_246:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_247:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_248:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_249:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_250:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_251:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_252:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_253:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_254:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
     jump_255:
-        BRUH 0x00 mstore
-        0x20 0x00 return
-    jump_256:
-        BRUH 0x00 mstore
-        0x20 0x00 return
+        [BRUH] swap1 jump
 }
 
 #define macro MAIN() = takes (0) returns (0) {
-  JUMP_TABLE()
+  jumpdest
+  SW_TABLE()
 }
 
