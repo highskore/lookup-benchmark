@@ -1,12 +1,12 @@
-# `Lookup Tables` vs `If Statements` vs `Mapping` vs `Yul Switch` vs `Huffidity`
+# `Lookup Tables` vs `If Statements` vs `Mapping` vs `Yul Switch` vs `Huffidity` vs `Huff`
 
-This repository contains foundry benchmark tests written in Solidity that are used to compare gas costs among six different methods of accessing data: lookup tables (2 versions), if statements, mapping, yul switch and huffidity (huff+solidity).
+This repository contains foundry benchmark tests written in Solidity that are used to compare gas costs among seven different methods of accessing data: lookup tables (2 versions), if statements, mapping, yul switch, huffidity (huff+solidity) and pure huff.
 
 I had a wild idea/use case that needed to have access to 255 different 9 byte values so I decided to test out the different methods of accessing data to see which one was the most gas efficient.
 
 ## Gas Snapshot
 
-![Alt text](./assets/snapshot.png)
+![Alt text](./assets/image.png)
 
 ## Comparison
 
@@ -79,6 +79,9 @@ A yul switch statement with 255 branches.
 | Function Name                        | min             | avg  | median | max  | # calls |
 | getSwitchYul                         | 297             | 2170 | 319    | 5896 | 3       |
 
+### Huff
+
+Lowest avg gas ez win.
 
 ## Credits
 

@@ -25,6 +25,7 @@ contract BenchmarkTest is PRBTest, StdCheats {
     If internal if_;
     YulSwitch internal yulSwitch;
     HuffLib internal huffLib;
+    Huff internal huffPure;
 
     function setUp() public {
         map = new Map();
@@ -32,6 +33,7 @@ contract BenchmarkTest is PRBTest, StdCheats {
         lookup2 = new Lookup2();
         if_ = new If();
         yulSwitch = new YulSwitch();
+        huffPure = Huff(HuffDeployer.config().deploy("JumpTable_Pure"));
         setUpHuff();
     }
 
@@ -75,16 +77,31 @@ contract BenchmarkTest is PRBTest, StdCheats {
     }
 
     function testFuzz_Huff(uint8 index) public {
-        uint256 value = huffLib.jumpTable(index);
+        uint256 value = huffPure.jumpTable(index);
         assertEq(value, uint256(0xffffffffffffffffff));
     }
 
     function test_Huff_Min() public {
-        uint256 value = huffLib.jumpTable(type(uint8).min);
+        uint256 value = huffPure.jumpTable(type(uint8).min);
         assertEq(value, uint256(0xffffffffffffffffff));
     }
 
     function test_Huff_Max() public {
+        uint256 value = huffPure.jumpTable(type(uint8).max);
+        assertEq(value, uint256(0xffffffffffffffffff));
+    }
+
+    function testFuzz_Huffidity(uint8 index) public {
+        uint256 value = huffLib.jumpTable(index);
+        assertEq(value, uint256(0xffffffffffffffffff));
+    }
+
+    function test_Huffidity_Min() public {
+        uint256 value = huffLib.jumpTable(type(uint8).min);
+        assertEq(value, uint256(0xffffffffffffffffff));
+    }
+
+    function test_Huffidity_Max() public {
         uint256 value = huffLib.jumpTable(type(uint8).max);
         assertEq(value, uint256(0xffffffffffffffffff));
     }
@@ -163,4 +180,8 @@ contract BenchmarkTest is PRBTest, StdCheats {
         uint256 value = yulSwitch.getSwitchYul(type(uint8).max);
         assertEq(value, uint256(0xffffffffffffffffff));
     }
+}
+
+interface Huff {
+    function jumpTable(uint8 index) external returns (uint256);
 }

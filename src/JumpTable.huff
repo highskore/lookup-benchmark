@@ -36,7 +36,6 @@
 // Solidity contract size
 #define constant SOL_SIZE = 0x98
 
-
 #define macro SW_TABLE() = takes (1) returns (1) {
     // Input Stack              // [jump index, return location]
     __tablesize(SWITCH_TABLE)   // [table_size, jump index, return location]
