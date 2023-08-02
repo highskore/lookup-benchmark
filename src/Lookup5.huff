@@ -1,35 +1,5 @@
 // SPDX-License-Identifier: MIT
 
-// Define a jump table
-#define jumptable SWITCH_TABLE {
-    jump_0 jump_1 jump_2 jump_3 jump_4 jump_5 jump_6 jump_7 jump_8 jump_9 jump_10
-    jump_11 jump_12 jump_13 jump_14 jump_15 jump_16 jump_17 jump_18 jump_19 jump_20
-    jump_21 jump_22 jump_23 jump_24 jump_25 jump_26 jump_27 jump_28 jump_29 jump_30
-    jump_31 jump_32 jump_33 jump_34 jump_35 jump_36 jump_37 jump_38 jump_39 jump_40
-    jump_41 jump_42 jump_43 jump_44 jump_45 jump_46 jump_47 jump_48 jump_49 jump_50
-    jump_51 jump_52 jump_53 jump_54 jump_55 jump_56 jump_57 jump_58 jump_59 jump_60
-    jump_61 jump_62 jump_63 jump_64 jump_65 jump_66 jump_67 jump_68 jump_69 jump_70
-    jump_71 jump_72 jump_73 jump_74 jump_75 jump_76 jump_77 jump_78 jump_79 jump_80
-    jump_81 jump_82 jump_83 jump_84 jump_85 jump_86 jump_87 jump_88 jump_89 jump_90
-    jump_91 jump_92 jump_93 jump_94 jump_95 jump_96 jump_97 jump_98 jump_99 jump_100
-    jump_101 jump_102 jump_103 jump_104 jump_105 jump_106 jump_107 jump_108 jump_109 jump_110
-    jump_111 jump_112 jump_113 jump_114 jump_115 jump_116 jump_117 jump_118 jump_119 jump_120
-    jump_121 jump_122 jump_123 jump_124 jump_125 jump_126 jump_127 jump_128 jump_129 jump_130
-    jump_131 jump_132 jump_133 jump_134 jump_135 jump_136 jump_137 jump_138 jump_139 jump_140
-    jump_141 jump_142 jump_143 jump_144 jump_145 jump_146 jump_147 jump_148 jump_149 jump_150
-    jump_151 jump_152 jump_153 jump_154 jump_155 jump_156 jump_157 jump_158 jump_159 jump_160
-    jump_161 jump_162 jump_163 jump_164 jump_165 jump_166 jump_167 jump_168 jump_169 jump_170
-    jump_171 jump_172 jump_173 jump_174 jump_175 jump_176 jump_177 jump_178 jump_179 jump_180
-    jump_181 jump_182 jump_183 jump_184 jump_185 jump_186 jump_187 jump_188 jump_189 jump_190
-    jump_191 jump_192 jump_193 jump_194 jump_195 jump_196 jump_197 jump_198 jump_199 jump_200
-    jump_201 jump_202 jump_203 jump_204 jump_205 jump_206 jump_207 jump_208 jump_209 jump_210
-    jump_211 jump_212 jump_213 jump_214 jump_215 jump_216 jump_217 jump_218 jump_219 jump_220
-    jump_221 jump_222 jump_223 jump_224 jump_225 jump_226 jump_227 jump_228 jump_229 jump_230
-    jump_231 jump_232 jump_233 jump_234 jump_235 jump_236 jump_237 jump_238 jump_239 jump_240
-    jump_241 jump_242 jump_243 jump_244 jump_245 jump_246 jump_247 jump_248 jump_249 jump_250
-    jump_251 jump_252 jump_253 jump_254 jump_255
-}
-
 // 36 big constants
 #define constant BRUH1 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
 #define constant BRUH2 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff

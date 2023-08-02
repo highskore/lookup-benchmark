@@ -1,6 +1,6 @@
 # `Lookup Tables` vs `If Statements` vs `Mapping` vs `Yul Switch` vs `Huffidity` vs `Huff`
 
-This repository contains foundry benchmark tests written in Solidity that are used to compare gas costs amongs different methods of accessing data: lookup tables (5 versions), if statements, mapping, yul switch, 2 different approaches in huffidity (huff+solidity) and pure huff.
+This repository contains foundry benchmark tests written in Solidity that are used to compare gas costs amongs different methods of accessing data: lookup tables (5 versions), if statements, mapping, yul switch(2 versions), 2 different approaches in huffidity (huff+solidity) and pure huff.
 
 I had a wild idea/use case that needed to have access to 255 different 9 byte values so I decided to test out the different methods of accessing data to see which one was the most gas efficient.
 
@@ -12,6 +12,8 @@ I had a wild idea/use case that needed to have access to 255 different 9 byte va
 
 ### Huffidity
 
+#### JumpTable
+
 Adding huff code (JumpTable.huff) to the end of a solidity contract (HuffLib.sol).
 The huff code is a jump table with 255 entries.
 
@@ -22,7 +24,7 @@ The huff code is a jump table with 255 entries.
 | Function Name                    | min             | avg  | median | max  | # calls |
 | jumpTable                        | 2014            | 2014 | 2014   | 2014 | 3       |
 
-### Huffdity - Lookup5
+#### Lookup5
 
 A huffidity version of the Lookup5 code.
 
@@ -45,7 +47,7 @@ A solidity if statement with 255 branches.
 | Function Name          | min             | avg  | median | max  | # calls |
 | getIf                  | 288             | 4190 | 6130   | 6153 | 3       |
 
-### Lookup (1,2,3,4)
+### Lookup (1,2,3,4,5)
 
 #### Lookup1
 
@@ -115,7 +117,9 @@ A solidity storage mapping with 255 entries.
 | Function Name            | min             | avg  | median | max  | # calls |
 | map                      | 2438            | 2438 | 2438   | 2438 | 3       |
 
-### YulSwitch
+### Yul
+
+#### YulSwitch
 
 A yul switch statement with 255 branches.
 
@@ -125,6 +129,17 @@ A yul switch statement with 255 branches.
 | 439272                               | 2223            |      |        |      |         |
 | Function Name                        | min             | avg  | median | max  | # calls |
 | getSwitchYul                         | 297             | 2170 | 319    | 5896 | 3       |
+
+#### YulLookup5
+
+Yul version of the Lookup5 code.
+
+| src/YulLookup5.sol:YulLookup5 contract |                 |     |        |     |         |
+|----------------------------------------|-----------------|-----|--------|-----|---------|
+| Deployment Cost                        | Deployment Size |     |        |     |         |
+| 301741                                 | 1536            |     |        |     |         |
+| Function Name                          | min             | avg | median | max | # calls |
+| getYulLookup5                          | 536             | 595 | 564    | 685 | 3       |
 
 ### Huff - If
 

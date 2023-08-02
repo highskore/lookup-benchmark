@@ -8,8 +8,7 @@ import { console2 } from "forge-std/console2.sol";
 import { StdCheats } from "forge-std/StdCheats.sol";
 import { HuffDeployer } from "foundry-huff/HuffDeployer.sol";
 
-// Contracts
-
+// Solity
 import { Map } from "../src/Map.sol";
 import { Lookup } from "../src/Lookup.sol";
 import { Lookup2 } from "../src/Lookup2.sol";
@@ -17,7 +16,12 @@ import { Lookup3 } from "../src/Lookup3.sol";
 import { Lookup4 } from "../src/Lookup4.sol";
 import { Lookup5 } from "../src/Lookup5.sol";
 import { If } from "../src/If.sol";
+
+// Yul
 import { YulSwitch } from "../src/YulSwitch.sol";
+import { YulLookup5 } from "../src/YulLookup5.sol";
+
+// Huff
 import { HuffWrapper } from "../src/HuffWrapper.sol";
 import { HuffLib } from "../src/HuffLib.sol";
 import { HuffLib2 } from "../src/HuffLib2.sol";
@@ -31,6 +35,7 @@ contract BenchmarkTest is PRBTest, StdCheats {
     Lookup5 internal lookup5;
     If internal if_;
     YulSwitch internal yulSwitch;
+    YulLookup5 internal yulLookup5;
     HuffLib internal huffLib;
     HuffLib2 internal huffLib2;
     Huff internal huffPure;
@@ -44,6 +49,7 @@ contract BenchmarkTest is PRBTest, StdCheats {
         lookup5 = new Lookup5();
         if_ = new If();
         yulSwitch = new YulSwitch();
+        yulLookup5 = new YulLookup5();
         huffPure = Huff(HuffDeployer.config().deploy("JumpTable_Pure"));
         setUpHuff();
         setUpHuff2();
@@ -93,8 +99,6 @@ contract BenchmarkTest is PRBTest, StdCheats {
         bytes memory bytecode = type(HuffLib2).runtimeCode;
         bytes memory huff = (HuffDeployer.deploy("Lookup5")).code;
         // Concatenate the Solidity and Huff code
-        console2.log(huff.length);
-        console2.log(bytecode.length);
         bytes memory finalCode;
         assembly {
             // Grab the free memory pointer
@@ -126,6 +130,21 @@ contract BenchmarkTest is PRBTest, StdCheats {
         // Deploy the lib
         address addr = address(new HuffWrapper(finalCode));
         huffLib2 = HuffLib2(addr);
+    }
+
+    function testFuzz_YulLookup5(uint8 index) public {
+        uint256 value = yulLookup5.getYulLookup5(index);
+        assertEq(value, uint256(0xffffffffffffffffff));
+    }
+
+    function test_getYulLookup5_Min() public {
+        uint256 value = yulLookup5.getYulLookup5(type(uint8).min);
+        assertEq(value, uint256(0xffffffffffffffffff));
+    }
+
+    function test_getYulLookup5_Max() public {
+        uint256 value = yulLookup5.getYulLookup5(type(uint8).max);
+        assertEq(value, uint256(0xffffffffffffffffff));
     }
 
     function testFuzz_Huff(uint8 index) public {
