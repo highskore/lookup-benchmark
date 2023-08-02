@@ -1,6 +1,6 @@
 # `Lookup Tables` vs `If Statements` vs `Mapping` vs `Yul Switch` vs `Huffidity` vs `Huff`
 
-This repository contains foundry benchmark tests written in Solidity that are used to compare gas costs among seven different methods of accessing data: lookup tables (2 versions), if statements, mapping, yul switch, huffidity (huff+solidity) and pure huff.
+This repository contains foundry benchmark tests written in Solidity that are used to compare gas costs amongs different methods of accessing data: lookup tables (5 versions), if statements, mapping, yul switch, 2 different approaches in huffidity (huff+solidity) and pure huff.
 
 I had a wild idea/use case that needed to have access to 255 different 9 byte values so I decided to test out the different methods of accessing data to see which one was the most gas efficient.
 
@@ -21,6 +21,18 @@ The huff code is a jump table with 255 entries.
 | 2375207                          | 12045           |      |        |      |         |
 | Function Name                    | min             | avg  | median | max  | # calls |
 | jumpTable                        | 2014            | 2014 | 2014   | 2014 | 3       |
+
+### Huffdity - Lookup5
+
+A huffidity version of the Lookup5 code.
+
+| src/HuffLib2.sol:HuffLib2 contract |                 |     |        |     |         |
+|------------------------------------|-----------------|-----|--------|-----|---------|
+| Deployment Cost                    | Deployment Size |     |        |     |         |
+| 710775                             | 3853            |     |        |     |         |
+| Function Name                      | min             | avg | median | max | # calls |
+| lookup5_Huff                       | 612             | 702 | 702    | 793 | 2       |
+
 
 ### If
 
@@ -114,7 +126,7 @@ A yul switch statement with 255 branches.
 | Function Name                        | min             | avg  | median | max  | # calls |
 | getSwitchYul                         | 297             | 2170 | 319    | 5896 | 3       |
 
-### Huff
+### Huff - If
 
 Pure huff version of the Huffidity Code, a jump table with 255 entries.
 

@@ -1,0 +1,931 @@
+// SPDX-License-Identifier: MIT
+
+// Define a jump table
+#define jumptable SWITCH_TABLE {
+    jump_0 jump_1 jump_2 jump_3 jump_4 jump_5 jump_6 jump_7 jump_8 jump_9 jump_10
+    jump_11 jump_12 jump_13 jump_14 jump_15 jump_16 jump_17 jump_18 jump_19 jump_20
+    jump_21 jump_22 jump_23 jump_24 jump_25 jump_26 jump_27 jump_28 jump_29 jump_30
+    jump_31 jump_32 jump_33 jump_34 jump_35 jump_36 jump_37 jump_38 jump_39 jump_40
+    jump_41 jump_42 jump_43 jump_44 jump_45 jump_46 jump_47 jump_48 jump_49 jump_50
+    jump_51 jump_52 jump_53 jump_54 jump_55 jump_56 jump_57 jump_58 jump_59 jump_60
+    jump_61 jump_62 jump_63 jump_64 jump_65 jump_66 jump_67 jump_68 jump_69 jump_70
+    jump_71 jump_72 jump_73 jump_74 jump_75 jump_76 jump_77 jump_78 jump_79 jump_80
+    jump_81 jump_82 jump_83 jump_84 jump_85 jump_86 jump_87 jump_88 jump_89 jump_90
+    jump_91 jump_92 jump_93 jump_94 jump_95 jump_96 jump_97 jump_98 jump_99 jump_100
+    jump_101 jump_102 jump_103 jump_104 jump_105 jump_106 jump_107 jump_108 jump_109 jump_110
+    jump_111 jump_112 jump_113 jump_114 jump_115 jump_116 jump_117 jump_118 jump_119 jump_120
+    jump_121 jump_122 jump_123 jump_124 jump_125 jump_126 jump_127 jump_128 jump_129 jump_130
+    jump_131 jump_132 jump_133 jump_134 jump_135 jump_136 jump_137 jump_138 jump_139 jump_140
+    jump_141 jump_142 jump_143 jump_144 jump_145 jump_146 jump_147 jump_148 jump_149 jump_150
+    jump_151 jump_152 jump_153 jump_154 jump_155 jump_156 jump_157 jump_158 jump_159 jump_160
+    jump_161 jump_162 jump_163 jump_164 jump_165 jump_166 jump_167 jump_168 jump_169 jump_170
+    jump_171 jump_172 jump_173 jump_174 jump_175 jump_176 jump_177 jump_178 jump_179 jump_180
+    jump_181 jump_182 jump_183 jump_184 jump_185 jump_186 jump_187 jump_188 jump_189 jump_190
+    jump_191 jump_192 jump_193 jump_194 jump_195 jump_196 jump_197 jump_198 jump_199 jump_200
+    jump_201 jump_202 jump_203 jump_204 jump_205 jump_206 jump_207 jump_208 jump_209 jump_210
+    jump_211 jump_212 jump_213 jump_214 jump_215 jump_216 jump_217 jump_218 jump_219 jump_220
+    jump_221 jump_222 jump_223 jump_224 jump_225 jump_226 jump_227 jump_228 jump_229 jump_230
+    jump_231 jump_232 jump_233 jump_234 jump_235 jump_236 jump_237 jump_238 jump_239 jump_240
+    jump_241 jump_242 jump_243 jump_244 jump_245 jump_246 jump_247 jump_248 jump_249 jump_250
+    jump_251 jump_252 jump_253 jump_254 jump_255
+}
+
+// 36 big constants
+#define constant BRUH1 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH2 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH3 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH4 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH5 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH6 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH7 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH8 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH9 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH10 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH11 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH12 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH13 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH14 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH15 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH16 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH17 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH18 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH19 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH20 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH21 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH22 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH23 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH24 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH25 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH26 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH27 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH28 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH29 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH30 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH31 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH32 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH33 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH34 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH35 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH36 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH37 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH38 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH39 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH40 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH41 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH42 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH43 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH44 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH45 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH46 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH47 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH48 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH49 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH50 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH51 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH52 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH53 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH54 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH55 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH56 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH57 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH58 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH59 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH60 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH61 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH62 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH63 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH64 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH65 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH66 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH67 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH68 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH69 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH70 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH71 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+#define constant BRUH72 = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+
+// Solidity contract size
+#define constant SOL_SIZE = 0x98
+
+#define macro LOOKUP_5() = takes (2) returns (2) {
+  // Input Stack                [index, return_dest]
+  0x20
+  dup2
+  gt
+  thirty_two_to_sixty_four
+  [SOL_SIZE]
+  add
+  jumpi
+
+  // zero_to_thirty_two
+  [BRUH1]
+  dup2
+  0x08
+  mul
+  shr
+  0xff
+  and
+  [BRUH2]
+  dup3
+  0x08
+  mul
+  shr
+  0xff
+  and
+  0x08
+  shl
+  or
+  [BRUH3]
+  dup3
+  0x08
+  mul
+  shr
+  0xff
+  and
+  0x10
+  shl
+  or
+  [BRUH4]
+  dup3
+  0x08
+  mul
+  shr
+  0xff
+  and
+  0x18
+  shl
+  or
+  [BRUH5]
+  dup3
+  0x08
+  mul
+  shr
+  0xff
+  and
+  0x20
+  shl
+  or
+  [BRUH6]
+  dup3
+  0x08
+  mul
+  shr
+  0xff
+  and
+  0x28
+  shl
+  or
+  [BRUH7]
+  dup3
+  0x08
+  mul
+  shr
+  0xff
+  and
+  0x30
+  shl
+  or
+  [BRUH8]
+  dup3
+  0x08
+  mul
+  shr
+  0xff
+  and
+  0x38
+  shl
+  or
+  [BRUH9]
+  dup3
+  0x08
+  mul
+  shr
+  0xff
+  and
+  0x40
+  shl
+  or
+  swap1
+  pop
+  swap1
+  jump
+
+  thirty_two_to_sixty_four:
+    0x40
+    dup2
+    gt
+    sixty_four_to_ninety_six
+    [SOL_SIZE]
+    add
+    jumpi
+
+    // thirty_two_to_sixty_four
+    0x20
+    sub
+    //
+    [BRUH10]
+    dup2
+    0x08
+    mul
+    shr
+    0xff
+    and
+    [BRUH11]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x08
+    shl
+    or
+    [BRUH12]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x10
+    shl
+    or
+    [BRUH13]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x18
+    shl
+    or
+    [BRUH14]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x20
+    shl
+    or
+    [BRUH15]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x28
+    shl
+    or
+    [BRUH16]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x30
+    shl
+    or
+    [BRUH17]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x38
+    shl
+    or
+    [BRUH18]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x40
+    shl
+    or
+    swap1
+    pop
+    swap1
+    jump
+
+  sixty_four_to_ninety_six:
+    0x60
+    dup2
+    gt
+    ninety_six_to_one_twenty_eight
+    [SOL_SIZE]
+    add
+    jumpi
+
+    // sixty_four_to_ninety_six
+    0x60
+    sub
+    //
+    [BRUH19]
+    dup2
+    0x08
+    mul
+    shr
+    0xff
+    and
+    [BRUH20]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x08
+    shl
+    or
+    [BRUH21]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x10
+    shl
+    or
+    [BRUH22]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x18
+    shl
+    or
+    [BRUH23]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x20
+    shl
+    or
+    [BRUH24]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x28
+    shl
+    or
+    [BRUH25]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x30
+    shl
+    or
+    [BRUH26]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x38
+    shl
+    or
+    [BRUH27]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x40
+    shl
+    or
+    swap1
+    pop
+    swap1
+    jump
+
+ninety_six_to_one_twenty_eight:
+    0x80
+    dup2
+    gt
+    one_twenty_eight_to_one_sixty
+    [SOL_SIZE]
+    add
+    jumpi
+    0x80
+    sub
+    [BRUH28]
+    dup2
+    0x08
+    mul
+    shr
+    0xff
+    and
+    [BRUH29]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x08
+    shl
+    or
+    [BRUH30]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x10
+    shl
+    or
+    [BRUH31]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x18
+    shl
+    or
+    [BRUH32]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x20
+    shl
+    or
+    [BRUH33]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x28
+    shl
+    or
+    [BRUH34]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x30
+    shl
+    or
+    [BRUH35]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x38
+    shl
+    or
+    [BRUH36]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x40
+    shl
+    or
+    swap1
+    pop
+    swap1
+    jump
+
+one_twenty_eight_to_one_sixty:
+    0xa0
+    dup2
+    gt
+    one_sixty_to_one_ninety_two
+    [SOL_SIZE]
+    add
+    jumpi
+    0xa0
+    sub
+    [BRUH37]
+    dup2
+    0x08
+    mul
+    shr
+    0xff
+    and
+    [BRUH38]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x08
+    shl
+    or
+    [BRUH39]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x10
+    shl
+    or
+    [BRUH40]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x18
+    shl
+    or
+    [BRUH41]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x20
+    shl
+    or
+    [BRUH42]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x28
+    shl
+    or
+    [BRUH43]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x30
+    shl
+    or
+    [BRUH44]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x38
+    shl
+    or
+    [BRUH45]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x40
+    shl
+    or
+    swap1
+    pop
+    swap1
+    jump
+
+one_sixty_to_one_ninety_two:
+    0xc0
+    dup2
+    gt
+    one_ninety_two_to_two_twenty_four
+    [SOL_SIZE]
+    add
+    jumpi
+    0xc0
+    sub
+    [BRUH46]
+    dup2
+    0x08
+    mul
+    shr
+    0xff
+    and
+    [BRUH47]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x08
+    shl
+    or
+    [BRUH48]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x10
+    shl
+    or
+    [BRUH49]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x18
+    shl
+    or
+    [BRUH50]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x20
+    shl
+    or
+    [BRUH51]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x28
+    shl
+    or
+    [BRUH52]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x30
+    shl
+    or
+    [BRUH53]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x38
+    shl
+    or
+    [BRUH54]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x40
+    shl
+    or
+    swap1
+    pop
+    swap1
+    jump
+
+one_ninety_two_to_two_twenty_four:
+    0xe0
+    dup2
+    gt
+    two_twenty_four_to_two_fifty_six
+    [SOL_SIZE]
+    add
+    jumpi
+    0xe0
+    sub
+    [BRUH55]
+    dup2
+    0x08
+    mul
+    shr
+    0xff
+    and
+    [BRUH56]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x08
+    shl
+    or
+    [BRUH57]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x10
+    shl
+    or
+    [BRUH58]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x18
+    shl
+    or
+    [BRUH59]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x20
+    shl
+    or
+    [BRUH60]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x28
+    shl
+    or
+    [BRUH61]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x30
+    shl
+    or
+    [BRUH62]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x38
+    shl
+    or
+    [BRUH63]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x40
+    shl
+    or
+    swap1
+    pop
+    swap1
+    jump
+
+two_twenty_four_to_two_fifty_six:
+    0x100
+    sub
+    [BRUH64]
+    dup2
+    0x08
+    mul
+    shr
+    0xff
+    and
+    [BRUH65]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x08
+    shl
+    or
+    [BRUH66]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x10
+    shl
+    or
+    [BRUH67]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x18
+    shl
+    or
+    [BRUH68]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x20
+    shl
+    or
+    [BRUH69]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x28
+    shl
+    or
+    [BRUH70]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x30
+    shl
+    or
+    [BRUH71]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x38
+    shl
+    or
+    [BRUH72]
+    dup3
+    0x08
+    mul
+    shr
+    0xff
+    and
+    0x40
+    shl
+    or
+    swap1
+    pop
+    swap1
+    jump
+}
+
+#define macro MAIN() = takes (0) returns (0) {
+  jumpdest
+  LOOKUP_5()
+}
+

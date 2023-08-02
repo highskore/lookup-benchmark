@@ -20,6 +20,7 @@ import { If } from "../src/If.sol";
 import { YulSwitch } from "../src/YulSwitch.sol";
 import { HuffWrapper } from "../src/HuffWrapper.sol";
 import { HuffLib } from "../src/HuffLib.sol";
+import { HuffLib2 } from "../src/HuffLib2.sol";
 
 contract BenchmarkTest is PRBTest, StdCheats {
     Map internal map;
@@ -31,6 +32,7 @@ contract BenchmarkTest is PRBTest, StdCheats {
     If internal if_;
     YulSwitch internal yulSwitch;
     HuffLib internal huffLib;
+    HuffLib2 internal huffLib2;
     Huff internal huffPure;
 
     function setUp() public {
@@ -44,6 +46,7 @@ contract BenchmarkTest is PRBTest, StdCheats {
         yulSwitch = new YulSwitch();
         huffPure = Huff(HuffDeployer.config().deploy("JumpTable_Pure"));
         setUpHuff();
+        setUpHuff2();
     }
 
     /// @notice Deploy the HuffWrapper contract with the runtime bytecode specified in the constructor.
@@ -85,6 +88,46 @@ contract BenchmarkTest is PRBTest, StdCheats {
         huffLib = HuffLib(addr);
     }
 
+    function setUpHuff2() public {
+        // Grab the Solidity + Huff runtime code
+        bytes memory bytecode = type(HuffLib2).runtimeCode;
+        bytes memory huff = (HuffDeployer.deploy("Lookup5")).code;
+        // Concatenate the Solidity and Huff code
+        console2.log(huff.length);
+        console2.log(bytecode.length);
+        bytes memory finalCode;
+        assembly {
+            // Grab the free memory pointer
+            finalCode := mload(0x40)
+
+            // Get the length of the Solidity and Huff code.
+            let solLen := mload(bytecode)
+            let huffLen := mload(huff)
+
+            // Get the start of the final runtime code data
+            let finalStart := add(finalCode, 0x20)
+
+            // Copy the solidity code
+            pop(staticcall(gas(), 0x04, add(bytecode, 0x20), solLen, finalStart, solLen))
+
+            // Copy the huff code
+            pop(staticcall(gas(), 0x04, add(huff, 0x20), huffLen, add(finalStart, solLen), huffLen))
+
+            // The length of `finalCode` is the sum of the lengths of the two runtime code snippets
+            let finalLen := add(solLen, huffLen)
+
+            // Store the length of the final code
+            mstore(finalCode, finalLen)
+
+            // Update the free memory pointer
+            mstore(0x40, add(finalCode, and(add(finalLen, 0x3F), not(0x1F))))
+        }
+
+        // Deploy the lib
+        address addr = address(new HuffWrapper(finalCode));
+        huffLib2 = HuffLib2(addr);
+    }
+
     function testFuzz_Huff(uint8 index) public {
         uint256 value = huffPure.jumpTable(index);
         assertEq(value, uint256(0xffffffffffffffffff));
@@ -112,6 +155,16 @@ contract BenchmarkTest is PRBTest, StdCheats {
 
     function test_Huffidity_Max() public {
         uint256 value = huffLib.jumpTable(type(uint8).max);
+        assertEq(value, uint256(0xffffffffffffffffff));
+    }
+
+    function test_Huffidity2_Min() public {
+        uint256 value = huffLib2.lookup5_Huff(type(uint8).min);
+        assertEq(value, uint256(0xffffffffffffffffff));
+    }
+
+    function test_Huffidity2_Max() public {
+        uint256 value = huffLib2.lookup5_Huff(type(uint8).max);
         assertEq(value, uint256(0xffffffffffffffffff));
     }
 
